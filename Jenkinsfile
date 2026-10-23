@@ -29,13 +29,9 @@ pipeline {
         }
 
         stage('Deploy') {
-    steps {
-        bat '''
-        if exist app.pid taskkill /F /PID %< app.pid 2>NUL
-        start /B cmd /c "npm start > app.log 2>&1"
-        timeout /t 5 /nobreak
-        '''
-        }
+            steps {
+                bat 'start "NodeApp" /B cmd /c "node app.js > app.log 2>&1"'
+            }
         }
     }
 }
