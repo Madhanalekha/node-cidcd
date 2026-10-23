@@ -30,7 +30,9 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                bat 'start "NodeApp" /B cmd /c "node app.js > app.log 2>&1"'
+                bat '''
+                start "NodeApp" /MIN cmd /c "node app.js > app.log 2>&1"
+                '''
             }
         }
     }
