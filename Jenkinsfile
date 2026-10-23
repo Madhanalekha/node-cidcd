@@ -30,11 +30,11 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                bat '''
-                schtasks /delete /tn "NodeCICDApp" /f >nul 2>&1
-                schtasks /create /tn "NodeCICDApp" /tr "C:\\Program Files\\nodejs\\node.exe C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\node-cicd\\app.js" /sc ONCE /st 00:00 /ru SYSTEM /f
-                schtasks /run /tn "NodeCICDApp"
-                '''
+                withEnv(['JENKINS_NODE_COOKIE=keepNodeRunning']) {
+                    bat '''
+                    start "NodeCICDApp" /B cmd /c "node app.js > app.log 2>&1"
+                    '''
+                }
             }
         }
     }
