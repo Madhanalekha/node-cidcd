@@ -5,6 +5,6 @@ const server = http.createServer((req, res) => {
     res.end("Node.js CI/CD Application is running!");
 });
 
-server.listen(3000, () => {
-    console.log("Server running on port 3000");
+server.listen(3010, () => {
+    console.log("Server running on port 3010");
 });
